@@ -2,7 +2,7 @@
     
     "use strict";
     // Initialize Firebase
-      const config = {
+      var config = {
         apiKey: "AIzaSyA61o9LQ4H70uAjR9AmAHEJ6odu0XJKOCQ",
         authDomain: "keyframe-efc93.firebaseapp.com",
         databaseURL: "https://keyframe-efc93.firebaseio.com",
@@ -10,13 +10,14 @@
         storageBucket: "keyframe-efc93.appspot.com",
         messagingSenderId: "546051631885"
       };
-      firebase.initializeApp(config);
+      var Firebase = firebase.initializeApp(config);
     
     //Get Elements
     const textEmail = document.getElementById('textEmail');
     const textPassword = document.getElementById('textPassword');
     const btnLogin = document.getElementById('btnLogin');
     const btnSignup = document.getElementById('btnSignup');
+    const btnLogout = document.getElementById('btnLogout');
     
     //Add login event
     btnLogin.addEventListener('click', e => {
@@ -41,12 +42,16 @@
         promise.catch(e => console.log(e.message));
     });
     
+    btnLogout.addEventListener('click', e => {
+        firebase.auth().signOut();
+    });
+
     //Add a realtime listener
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser) {
             console.log(firebaseUser);
         } else{
-            consoe.log('not logged in');
+            console.log('not logged in');
         }
     });
     

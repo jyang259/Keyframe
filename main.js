@@ -1,7 +1,7 @@
 (function () {
     
     "use strict";
-    // Initialize Firebase
+    // Initialize Firebase Authentication
       var config = {
         apiKey: "AIzaSyA61o9LQ4H70uAjR9AmAHEJ6odu0XJKOCQ",
         authDomain: "keyframe-efc93.firebaseapp.com",
@@ -11,6 +11,8 @@
         messagingSenderId: "546051631885"
       };
       var Firebase = firebase.initializeApp(config);
+
+    //Initialize Firebase Realtime Database 
     
     //Get Elements
     const textEmail = document.getElementById('textEmail');
@@ -42,9 +44,9 @@
         promise.catch(e => console.log(e.message));
     });
     
-    btnLogout.addEventListener('click', e => {
-        firebase.auth().signOut();
-    });
+    // btnLogout.addEventListener('click', e => {
+    //     firebase.auth().signOut();
+    // });
 
     //Add a realtime listener
     firebase.auth().onAuthStateChanged(firebaseUser => {
